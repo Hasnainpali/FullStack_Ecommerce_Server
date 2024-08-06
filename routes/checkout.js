@@ -41,8 +41,8 @@ router.post("/", async (req, res) => {
       metadata: {
          userId: req.body.userId,
       },
-      success_url: `mern-stack-e-commerce-website.vercel.app/payment/success`,
-      cancel_url: "mern-stack-e-commerce-website.vercel.app/cancel"
+      success_url: `https://mern-stack-e-commerce-website.vercel.app/payment/success`,
+      cancel_url: "https://mern-stack-e-commerce-website.vercel.app/cancel"
    });
 
    res.json({ id: session.id });
