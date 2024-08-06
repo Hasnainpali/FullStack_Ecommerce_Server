@@ -41,8 +41,8 @@ router.post("/", async (req, res) => {
       metadata: {
          userId: req.body.userId,
       },
-      success_url: `http://localhost:3001/payment/success`,
-      cancel_url: "http://localhost:3001/cancel"
+      success_url: `mern-stack-e-commerce-website.vercel.app/payment/success`,
+      cancel_url: "mern-stack-e-commerce-website.vercel.app/cancel"
    });
 
    res.json({ id: session.id });
