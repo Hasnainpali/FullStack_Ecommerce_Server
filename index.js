@@ -79,6 +79,10 @@ app.listen(process.env.port,()=>{
     console.log(`Server is running Port ${process.env.port}`)
 });
 
+app.get('/', (req,res)=>{
+   res.send("Backend Server")
+})
+
 mongoose.connect(process.env.DATABASE_STRING)
 
 const databds = mongoose.connection;
