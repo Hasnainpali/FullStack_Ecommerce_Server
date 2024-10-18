@@ -7,9 +7,9 @@ const app = express();
 const authJwt = require('./helper/jwt.js')
 
 app.use(express.json())
-app.use(cors())
+app.use(cors());
 app.use(bodyParser.json());
-// app.use(authJwt());         
+// app.use(authJwt()); 
    
 const cloudinary = require("cloudinary").v2;
 

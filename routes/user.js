@@ -10,7 +10,7 @@ router.post('/signup', async (req, res) => {
     try{
       const existingUser = await User.findOne({ email: email });
       if(existingUser){
-         res.status(400).json({ error:true, msg: "user already exist"})
+       return   res.status(400).json({ error:true, msg: "user already exist"})
       }
  
       const hashPassword = await bcrypt.hash(password,10)
@@ -25,13 +25,13 @@ router.post('/signup', async (req, res) => {
 
       const token = jwt.sign({email:result.email, id:result._id}, process.env.JSON_WEB_TOKEN_SECRET_KEY)
        
-      res.status(200).json({
+     return res.status(200).json({
          user:result,
          token:token
       })
     } catch(error){
       //   console.log(error)
-        res.status(500).json({error:true, msg:"something went wrong"})     
+     return   res.status(500).json({error:true, msg:"something went wrong"})     
     }
   
 });
@@ -59,7 +59,7 @@ router.post('/signin', async (req, res) => {
      })
    } catch(error){
       //  console.log(error)
-       res.status(500).json({error:true, msg:"something went wrong"})
+      return res.status(500).json({error:true, msg:"something went wrong"})
    }
 
 });
@@ -67,17 +67,17 @@ router.post('/signin', async (req, res) => {
 router.get('/', async(req,res)=>{
    const userList = await User.find();
     if(!userList){
-      res.status(500).json({success: false})
+    return  res.status(500).json({success: false})
     }
-    res.send(userList);
+    return res.send(userList);
 });
 
 router.get('/:id', async(req,res)=>{
    const user = await User.findById(req.params.id);
     if(!user){
-      res.status(500).json({message:"The user with the given ID was not found"})
+      return res.status(500).json({message:"The user with the given ID was not found"})
     }
-    res.send(200).send(user)
+    return res.status(200).json(user);
 });
 
 router.delete('/:id', async(req,res)=>{
@@ -101,7 +101,7 @@ router.get('/get/count', async(req,res)=>{
       userCount: userCount
     })
 });
-
+ 
 router.put('/:id', async(req,res)=>{
    const {name, phone, email, password} = req.body
 
@@ -113,7 +113,7 @@ router.put('/:id', async(req,res)=>{
       newPassword = userExist.passwordHash
     }
 
-    const user = await User.findByIdAndDelete(
+    const user = await User.findByIdAndUpdate(
         req.params.id,{
           name:name,
           phone:phone,
@@ -126,7 +126,7 @@ router.put('/:id', async(req,res)=>{
     if(!user){
        return res.status(400).send("The user cannot be Updated")
     }
-    res.send(user)
+    return res.send(user)
 
 });
 
