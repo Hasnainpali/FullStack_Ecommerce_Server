@@ -140,10 +140,10 @@ router.get("/:id", async (req, res) => {
   return res.status(200).send(product);
 });
 router.post("/create", async (req, res) => {
-  const category = await Category.findById(req.body.category);
-  if (!category) {
-    return res.status(404).send("inValid Category");
-  }
+  // const category = await Category.findById(req.body.category);
+  // if (!category) {
+  //   return res.status(404).send("inValid Category");
+  // }
 
   let product = new Product({
     name: req.body.name,
