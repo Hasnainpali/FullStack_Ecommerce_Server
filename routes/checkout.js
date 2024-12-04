@@ -153,7 +153,7 @@ router.post(
           const orders = new Orders(orderDetails);
           await orders.save(); // Save the order details to the database
 
-          // Clear the user's cart
+          
           const userId = session.metadata.userId;
           await Carts.deleteMany({ userId }); // Delete all cart items for the user
           
