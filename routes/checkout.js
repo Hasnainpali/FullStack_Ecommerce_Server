@@ -152,6 +152,12 @@ router.post(
 
           const orders = new Orders(orderDetails);
           await orders.save(); // Save the order details to the database
+
+          await Carts.deleteMany({
+            userId: session.metadata.userId,
+            productId: { $in: productDetails.map((product) => product.productId) },
+          });
+      
           
         } catch (error) {
           console.error("Error processing checkout session:", error);
