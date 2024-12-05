@@ -152,10 +152,6 @@ router.post(
 
           const orders = new Orders(orderDetails);
           await orders.save(); // Save the order details to the database
-
-          
-          const userId = session.metadata.userId;
-          await Carts.deleteMany({ userId }); // Delete all cart items for the user
           
         } catch (error) {
           console.error("Error processing checkout session:", error);
