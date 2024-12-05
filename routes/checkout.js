@@ -157,7 +157,6 @@ router.post(
             userId: session.metadata.userId,
             productId: { $in: productDetails.map((product) => product.productId) },
           });
-      
           
         } catch (error) {
           console.error("Error processing checkout session:", error);
